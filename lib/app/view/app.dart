@@ -83,7 +83,8 @@ class TempWidget extends StatelessWidget {
           ),
           Center(
             child: ElevatedButton(
-              onPressed: () => AppRouter.of(context).push(const HomeRoute()),
+              onPressed: () =>
+                  AppRouter.of(context).push(const LifeCounterRoute()),
               child: const Text('Table'),
             ),
           )

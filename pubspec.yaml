@@ -13,8 +13,11 @@ dependencies:
     path: packages/app_ui
   bloc: ^8.1.2
   equatable: ^2.0.5
+  firebase_analytics: ^10.4.4
   firebase_authentication_client:
     path: packages/authentication_client/firebase_authentication_client
+  firebase_core: ^2.15.0
+  firebase_crashlytics: ^3.3.4
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3

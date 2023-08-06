@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:magic_yeti/app/view/app.dart';
+import 'package:magic_yeti/life_counter/life_counter_page.dart';
 import 'package:magic_yeti/login/login.dart';
 import 'package:magic_yeti/sign_up/sign_up.dart';
 
@@ -8,6 +9,7 @@ final appRoutes = [
   HomeRoute.route,
   LoginRoute.route,
   SignUpRoute.route,
+  LifeCounterRoute.route,
 ];
 
 abstract class AppRoute extends Equatable {
@@ -59,6 +61,20 @@ class SignUpRoute extends AppRoute {
         path: '/sign_up',
         builder: (context, state) {
           return const SignUpPage();
+        },
+      );
+}
+
+class LifeCounterRoute extends AppRoute {
+  const LifeCounterRoute() : super();
+
+  @override
+  String get path => '/life_counter';
+
+  static GoRoute get route => GoRoute(
+        path: '/life_counter',
+        builder: (context, state) {
+          return const LifeCounterPage();
         },
       );
 }
