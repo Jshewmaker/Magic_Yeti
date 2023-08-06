@@ -1,4 +1,7 @@
-/// App UI package for custom widgets
+/// UI components for Valkyrie mobile app
 library app_ui;
 
-export 'src/app_ui.dart';
+export 'src/colors/app_colors.dart';
+export 'src/spacing/app_spacing.dart';
+export 'src/theme/app_theme.dart';
+export 'src/typography/typography.dart';
