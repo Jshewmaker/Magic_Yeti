@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '621633361811',
     projectId: 'mtg-yeti',
     storageBucket: 'mtg-yeti.appspot.com',
-    iosClientId: '621633361811-7qenvcpee9gkj2bl6pt041fak20nb6f5.apps.googleusercontent.com',
+    iosClientId:
+        '621633361811-7qenvcpee9gkj2bl6pt041fak20nb6f5.apps.googleusercontent.com',
     iosBundleId: 'com.example.verygoodcore.magic-yeti',
   );
 }
