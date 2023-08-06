@@ -61,7 +61,7 @@ class AppView extends StatelessWidget {
   }
 }
 
-//TODO(jshewmaker): remove this widget once we have HomePage.
+// TODO(jshewmaker): remove this widget once we have HomePage.
 class TempWidget extends StatelessWidget {
   const TempWidget({super.key});
 
