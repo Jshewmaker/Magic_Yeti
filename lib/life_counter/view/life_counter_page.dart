@@ -13,12 +13,12 @@ class LifeCounterPage extends StatelessWidget {
             child: Column(
               children: [
                 Flexible(
-                  child: LifeCounter(
+                  child: LifeCounterWidget(
                     color: Colors.blue,
                   ),
                 ),
                 Flexible(
-                  child: LifeCounter(
+                  child: LifeCounterWidget(
                     color: Colors.red,
                   ),
                 ),
@@ -29,12 +29,12 @@ class LifeCounterPage extends StatelessWidget {
             child: Column(
               children: [
                 Flexible(
-                  child: LifeCounter(
+                  child: LifeCounterWidget(
                     color: Colors.green,
                   ),
                 ),
                 Flexible(
-                  child: LifeCounter(
+                  child: LifeCounterWidget(
                     color: Colors.orange,
                   ),
                 ),

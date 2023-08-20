@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:magic_yeti/life_counter/bloc/life_counter_bloc.dart';
 
-class LifeCounter extends StatelessWidget {
-  const LifeCounter({required this.color, super.key});
+class LifeCounterWidget extends StatelessWidget {
+  const LifeCounterWidget({required this.color, super.key});
 
   final Color color;
 
@@ -26,6 +26,7 @@ class LifeCounter extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
+                      key: const ValueKey('life_counter_widget_decrement'),
                       child: GestureDetector(
                         onTap: () => context
                             .read<LifeCounterBloc>()
@@ -33,6 +34,7 @@ class LifeCounter extends StatelessWidget {
                       ),
                     ),
                     Expanded(
+                      key: const ValueKey('life_counter_widget_increment'),
                       child: GestureDetector(
                         onTap: () => context
                             .read<LifeCounterBloc>()
