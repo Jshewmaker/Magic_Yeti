@@ -30,7 +30,7 @@ class App extends StatelessWidget {
               userRepository: _userRepository,
               user: _user,
             ),
-          )
+          ),
         ],
         child: Provider<AppRouter>(
           create: (context) => AppRouter(
@@ -87,7 +87,7 @@ class TempWidget extends StatelessWidget {
                   AppRouter.of(context).push(const LifeCounterRoute()),
               child: const Text('Table'),
             ),
-          )
+          ),
         ],
       ),
     );
