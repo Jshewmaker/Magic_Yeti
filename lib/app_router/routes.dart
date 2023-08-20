@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:magic_yeti/app/view/app.dart';
-import 'package:magic_yeti/life_counter/life_counter_page.dart';
+import 'package:magic_yeti/life_counter/view/life_counter_page.dart';
 import 'package:magic_yeti/login/login.dart';
 import 'package:magic_yeti/sign_up/sign_up.dart';
 
