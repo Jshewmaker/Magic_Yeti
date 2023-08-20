@@ -20,12 +20,10 @@
   - if widget needs to be accessible in tests, make sure to add `@visibleForTesting` attribute
   - make sure the variables names are meaningful and descriptive
 - [ ] 🧪 I have run the following commands locally in the project root and each modified package.
-  - `fvm flutter format --set-exit-if-changed lib test`
-  - `fvm flutter analyze lib test`
+  - `dart format --set-exit-if-changed lib test`
+  - `flutter analyze lib test`
   - `tool/coverage.sh` or `tool/covergage.sh packages/some_package`
 - [ ] 📸 I have attached screenshot(s) or GIF(s) showing my work in action (if applicable). 
-- [ ] 📲 I have tested my solution on different screen resolutions (if applicable).
-- [ ] 🎯 I have linked ticket(s) from the Monday board.
 
 ## Type of Change
 
