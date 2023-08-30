@@ -9,7 +9,6 @@ abstract class UITextStyle {
     fontFamily: 'Teko',
     decoration: TextDecoration.none,
     textBaseline: TextBaseline.alphabetic,
-    color: Colors.white,
   );
 
   /// Display Large Text Style.
