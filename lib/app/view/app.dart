@@ -1,3 +1,4 @@
+import 'package:api_client/api_client.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,23 +6,30 @@ import 'package:magic_yeti/app/bloc/app_bloc.dart';
 import 'package:magic_yeti/app_router/app_router.dart';
 import 'package:magic_yeti/l10n/l10n.dart';
 import 'package:provider/provider.dart';
+import 'package:scryfall_repository/scryfall_repository.dart';
 import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
   const App({
+    required this.apiClient,
     required UserRepository userRepository,
+    required ScryfallRepository scryfallRepository,
     required User user,
     super.key,
   })  : _userRepository = userRepository,
+        _scryfallRepository = scryfallRepository,
         _user = user;
 
+  final ApiClient apiClient;
   final UserRepository _userRepository;
+  final ScryfallRepository _scryfallRepository;
   final User _user;
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _userRepository),
+        RepositoryProvider.value(value: _scryfallRepository),
       ],
       child: MultiBlocProvider(
         providers: [

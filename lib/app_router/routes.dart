@@ -4,6 +4,7 @@ import 'package:magic_yeti/app/view/app.dart';
 import 'package:magic_yeti/life_counter/view/life_counter_page.dart';
 import 'package:magic_yeti/login/login.dart';
 import 'package:magic_yeti/menu/widgets/menu.dart';
+import 'package:magic_yeti/player_settings.dart';
 import 'package:magic_yeti/sign_up/sign_up.dart';
 
 final appRoutes = [
@@ -12,6 +13,7 @@ final appRoutes = [
   SignUpRoute.route,
   LifeCounterRoute.route,
   SlideOutMenuRoute.route,
+  PlayerSettingsRoute.route,
 ];
 
 abstract class AppRoute extends Equatable {
@@ -91,6 +93,20 @@ class SlideOutMenuRoute extends AppRoute {
         path: '/slide_out_menu',
         builder: (context, state) {
           return const SlideOutMenu();
+        },
+      );
+}
+
+class PlayerSettingsRoute extends AppRoute {
+  const PlayerSettingsRoute() : super();
+
+  @override
+  String get path => '/player_settings';
+
+  static GoRoute get route => GoRoute(
+        path: '/player_settings',
+        builder: (context, state) {
+          return const PlayerSettings();
         },
       );
 }

@@ -9,6 +9,8 @@ environment:
 dependencies:
   analytics_repository:
    path: packages/analytics_repository
+  api_client:
+    path: packages/api_client
   app_ui:
     path: packages/app_ui
   bloc: ^8.1.2
@@ -28,6 +30,8 @@ dependencies:
   go_router: ^10.0.0
   intl: ^0.18.0
   provider: ^6.0.5
+  scryfall_repository:
+    path: packages/scryfall_repository
   user_repository:
     path: packages/user_repository
 

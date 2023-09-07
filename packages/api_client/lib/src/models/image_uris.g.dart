@@ -11,8 +11,8 @@ ImageURIs _$ImageURIsFromJson(Map<String, dynamic> json) => ImageURIs(
       normal: json['normal'] as String,
       large: json['large'] as String,
       png: json['png'] as String,
-      artCrop: json['artCrop'] as String,
-      borderCrop: json['borderCrop'] as String,
+      artCrop: json['art_crop'] as String,
+      borderCrop: json['border_crop'] as String,
     );
 
 Map<String, dynamic> _$ImageURIsToJson(ImageURIs instance) => <String, dynamic>{
@@ -20,6 +20,6 @@ Map<String, dynamic> _$ImageURIsToJson(ImageURIs instance) => <String, dynamic>{
       'normal': instance.normal,
       'large': instance.large,
       'png': instance.png,
-      'artCrop': instance.artCrop,
-      'borderCrop': instance.borderCrop,
+      'art_crop': instance.artCrop,
+      'border_crop': instance.borderCrop,
     };

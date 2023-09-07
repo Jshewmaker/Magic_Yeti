@@ -7,19 +7,19 @@ part of 'prices.dart';
 // **************************************************************************
 
 Prices _$PricesFromJson(Map<String, dynamic> json) => Prices(
-      usd: (json['usd'] as num?)?.toDouble(),
-      usdFoil: (json['usdFoil'] as num?)?.toDouble(),
-      usdEtched: (json['usdEtched'] as num?)?.toDouble(),
-      eur: (json['eur'] as num?)?.toDouble(),
-      eurFoil: (json['eurFoil'] as num?)?.toDouble(),
-      tix: (json['tix'] as num?)?.toDouble(),
+      usd: json['usd'] as String?,
+      usdFoil: json['usd_foil'] as String?,
+      usdEtched: json['usd_etched'] as String?,
+      eur: json['eur'] as String?,
+      eurFoil: json['eur_foil'] as String?,
+      tix: json['tix'] as String?,
     );
 
 Map<String, dynamic> _$PricesToJson(Prices instance) => <String, dynamic>{
       'usd': instance.usd,
-      'usdFoil': instance.usdFoil,
-      'usdEtched': instance.usdEtched,
+      'usd_foil': instance.usdFoil,
+      'usd_etched': instance.usdEtched,
       'eur': instance.eur,
-      'eurFoil': instance.eurFoil,
+      'eur_foil': instance.eurFoil,
       'tix': instance.tix,
     };

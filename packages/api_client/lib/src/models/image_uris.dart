@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'image_uris.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class ImageURIs extends Equatable {
   const ImageURIs({
     required this.small,

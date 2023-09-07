@@ -5,12 +5,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'purchase_uris.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class PurchaseURIs extends Equatable {
   const PurchaseURIs({
-    required this.tcgPlayer,
-    required this.cardHoarder,
-    required this.cardMarket,
+    required this.tcgplayer,
+    required this.cardhoarder,
+    required this.cardmarket,
   });
 
   factory PurchaseURIs.fromJson(Map<String, dynamic> json) =>
@@ -18,10 +18,10 @@ class PurchaseURIs extends Equatable {
 
   Map<String, dynamic> toJson() => _$PurchaseURIsToJson(this);
 
-  final String tcgPlayer;
-  final String cardMarket;
-  final String cardHoarder;
+  final String tcgplayer;
+  final String cardmarket;
+  final String cardhoarder;
 
   @override
-  List<Object?> get props => [tcgPlayer, cardHoarder, cardMarket];
+  List<Object?> get props => [tcgplayer, cardhoarder, cardmarket];
 }

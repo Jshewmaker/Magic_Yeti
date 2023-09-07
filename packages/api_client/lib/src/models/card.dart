@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'card.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class Card extends Equatable {
   const Card({
     required this.object,
@@ -14,15 +14,15 @@ class Card extends Equatable {
     required this.set,
     required this.oracleId,
     required this.multiverseIds,
-    required this.tcgPlayerId,
-    required this.cardMarketId,
+    required this.tcgplayerId,
+    required this.cardmarketId,
     required this.name,
     required this.lang,
     required this.releasedAt,
     required this.uri,
     required this.scryfallUri,
     required this.layout,
-    required this.highResImage,
+    required this.highresImage,
     required this.imageStatus,
     required this.imageUris,
     required this.manaCost,
@@ -77,21 +77,21 @@ class Card extends Equatable {
 
   final String object;
   final String id;
-  final String oracleId;
+  final String? oracleId;
   final List<int> multiverseIds;
-  final int tcgPlayerId;
-  final int cardMarketId;
+  final int tcgplayerId;
+  final int cardmarketId;
   final String name;
   final String lang;
   final String releasedAt;
   final String uri;
   final String scryfallUri;
   final String layout;
-  final bool highResImage;
+  final bool highresImage;
   final String imageStatus;
   final ImageURIs imageUris;
   final String manaCost;
-  final int cmc;
+  final double cmc;
   final String typeLine;
   final String oracleText;
   final List<String> colors;
@@ -131,7 +131,7 @@ class Card extends Equatable {
   final bool booster;
   final bool storySpotlight;
   final int edhrecRank;
-  final int pennyRank;
+  final int? pennyRank;
   final Prices prices;
   final RelatedURIs relatedUris;
   final PurchaseURIs purchaseUris;
@@ -142,15 +142,15 @@ class Card extends Equatable {
         id,
         oracleId,
         multiverseIds,
-        tcgPlayerId,
-        cardMarketId,
+        tcgplayerId,
+        cardmarketId,
         name,
         lang,
         releasedAt,
         uri,
         scryfallSetUri,
         layout,
-        highResImage,
+        highresImage,
         imageStatus,
         imageUris,
         manaCost,

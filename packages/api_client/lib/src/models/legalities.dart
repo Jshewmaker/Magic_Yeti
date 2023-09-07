@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'legalities.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class Legalities extends Equatable {
   const Legalities({
     required this.standard,
@@ -20,15 +20,15 @@ class Legalities extends Equatable {
     required this.vintage,
     required this.penny,
     required this.commander,
-    required this.oathBreaker,
+    required this.oathbreaker,
     required this.brawl,
-    required this.historicBrawl,
+    required this.historicbrawl,
     required this.alchemy,
-    required this.pauperCommander,
+    required this.paupercommander,
     required this.duel,
     required this.oldschool,
     required this.premodern,
-    required this.prEdh,
+    required this.predh,
   });
 
   factory Legalities.fromJson(Map<String, dynamic> json) =>
@@ -48,15 +48,15 @@ class Legalities extends Equatable {
   final String vintage;
   final String penny;
   final String commander;
-  final String oathBreaker;
+  final String oathbreaker;
   final String brawl;
-  final String historicBrawl;
+  final String historicbrawl;
   final String alchemy;
-  final String pauperCommander;
+  final String paupercommander;
   final String duel;
   final String oldschool;
   final String premodern;
-  final String prEdh;
+  final String predh;
 
   @override
   List<Object?> get props => [
@@ -72,14 +72,14 @@ class Legalities extends Equatable {
         vintage,
         penny,
         commander,
-        oathBreaker,
+        oathbreaker,
         brawl,
-        historicBrawl,
+        historicbrawl,
         alchemy,
-        pauperCommander,
+        paupercommander,
         duel,
         oldschool,
         premodern,
-        prEdh,
+        predh,
       ];
 }

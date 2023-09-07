@@ -5,12 +5,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'related_uris.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class RelatedURIs extends Equatable {
   const RelatedURIs({
     required this.gatherer,
-    required this.tcgPlayerInfiniteArticles,
-    required this.tcgPlayerInfiniteDecks,
+    required this.tcgplayerInfiniteArticles,
+    required this.tcgplayerInfiniteDecks,
     required this.edhrec,
   });
 
@@ -20,15 +20,15 @@ class RelatedURIs extends Equatable {
   Map<String, dynamic> toJson() => _$RelatedURIsToJson(this);
 
   final String gatherer;
-  final String tcgPlayerInfiniteArticles;
-  final String tcgPlayerInfiniteDecks;
+  final String tcgplayerInfiniteArticles;
+  final String tcgplayerInfiniteDecks;
   final String edhrec;
 
   @override
   List<Object?> get props => [
         gatherer,
-        tcgPlayerInfiniteArticles,
-        tcgPlayerInfiniteDecks,
+        tcgplayerInfiniteArticles,
+        tcgplayerInfiniteDecks,
         edhrec,
       ];
 }

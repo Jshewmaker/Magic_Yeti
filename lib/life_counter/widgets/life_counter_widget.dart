@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:magic_yeti/app_router/app_router.dart';
 import 'package:magic_yeti/life_counter/bloc/life_counter_bloc.dart';
 
 class LifeCounterWidget extends StatefulWidget {
@@ -98,15 +99,19 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                   height: MediaQuery.of(context).size.height - 50,
                   child: Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: widget.color,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(20),
+                      GestureDetector(
+                        onTap: () => AppRouter.of(context)
+                            .push(const PlayerSettingsRoute()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: widget.color,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
+                          height: 200,
+                          width: 300,
                         ),
-                        height: 200,
-                        width: 300,
                       ),
                       TextField(
                         controller: textController,

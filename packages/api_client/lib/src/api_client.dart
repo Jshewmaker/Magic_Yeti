@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:api_client/src/models/models.dart';
 import 'package:http/http.dart' as http;
 
 /// {@template ApiClientError}
@@ -36,13 +37,12 @@ class ApiClient {
   final http.Client _httpClient;
   final Uri _baseUrl;
 
-  Future<String> getCardFullText(String cardName) async {
+  Future<Card> getCardFullText(String cardName) async {
     final queryParameters = {
-      'order': 'name',
-      'q': cardName,
+      'fuzzy': 'craterhoof',
     };
     final request = _baseUrl.replace(
-      path: '/cards/search',
+      path: '/cards/named',
       queryParameters: queryParameters,
     );
 
@@ -55,10 +55,10 @@ class ApiClient {
           stackTrace: StackTrace.current,
         );
       }
-      final json = jsonDecode(response.body) as List;
-      return 'null';
-    } catch (e, stackTrace) {
-      throw ApiClientError(error: e, stackTrace: stackTrace);
+      final json = jsonDecode(response.body);
+      return Card.fromJson(json as Map<String, dynamic>);
+    } catch (error, stackTrace) {
+      throw ApiClientError(error: error, stackTrace: stackTrace);
     }
   }
 }

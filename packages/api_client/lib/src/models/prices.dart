@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'prices.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class Prices extends Equatable {
   const Prices({
     required this.usd,
@@ -20,12 +20,12 @@ class Prices extends Equatable {
 
   Map<String, dynamic> toJson() => _$PricesToJson(this);
 
-  final double? usd;
-  final double? usdFoil;
-  final double? usdEtched;
-  final double? eur;
-  final double? eurFoil;
-  final double? tix;
+  final String? usd;
+  final String? usdFoil;
+  final String? usdEtched;
+  final String? eur;
+  final String? eurFoil;
+  final String? tix;
 
   @override
   List<Object?> get props => [
