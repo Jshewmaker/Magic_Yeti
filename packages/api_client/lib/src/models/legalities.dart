@@ -1,7 +1,11 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'legalities.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Legalities extends Equatable {
   const Legalities({
     required this.standard,
@@ -26,6 +30,11 @@ class Legalities extends Equatable {
     required this.premodern,
     required this.prEdh,
   });
+
+  factory Legalities.fromJson(Map<String, dynamic> json) =>
+      _$LegalitiesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LegalitiesToJson(this);
 
   final String standard;
   final String future;

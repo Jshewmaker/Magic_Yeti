@@ -28,13 +28,13 @@ class AppTheme {
     );
   }
 
-  Color get _primaryColor => AppColors.background;
+  Color get _primaryColor => AppColors.primary;
   Color get _backgroundColor => AppColors.background;
 
   ColorScheme get _colorScheme {
     return ColorScheme.dark(
       background: _backgroundColor,
-      primary: _primaryColor,
+      primary: _backgroundColor,
       onPrimary: _backgroundColor,
       secondary: AppColors.secondary,
       tertiary: AppColors.tertiary,

@@ -2,7 +2,11 @@
 
 import 'package:api_client/src/models/models.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'card.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Card extends Equatable {
   const Card({
     required this.object,
@@ -66,6 +70,11 @@ class Card extends Equatable {
     required this.relatedUris,
     required this.purchaseUris,
   });
+
+  factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CardToJson(this);
+
   final String object;
   final String id;
   final String oracleId;
