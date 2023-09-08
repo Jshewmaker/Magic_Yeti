@@ -19,10 +19,10 @@ class RelatedURIs extends Equatable {
 
   Map<String, dynamic> toJson() => _$RelatedURIsToJson(this);
 
-  final String gatherer;
-  final String tcgplayerInfiniteArticles;
-  final String tcgplayerInfiniteDecks;
-  final String edhrec;
+  final String? gatherer;
+  final String? tcgplayerInfiniteArticles;
+  final String? tcgplayerInfiniteDecks;
+  final String? edhrec;
 
   @override
   List<Object?> get props => [

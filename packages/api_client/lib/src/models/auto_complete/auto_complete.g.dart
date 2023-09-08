@@ -9,12 +9,12 @@ part of 'auto_complete.dart';
 AutoComplete _$AutoCompleteFromJson(Map<String, dynamic> json) => AutoComplete(
       object: json['object'] as String,
       data: (json['data'] as List<dynamic>).map((e) => e as String).toList(),
-      totalValues: json['totalValues'] as int,
+      totalValues: json['total_values'] as int,
     );
 
 Map<String, dynamic> _$AutoCompleteToJson(AutoComplete instance) =>
     <String, dynamic>{
       'object': instance.object,
-      'totalValues': instance.totalValues,
+      'total_values': instance.totalValues,
       'data': instance.data,
     };

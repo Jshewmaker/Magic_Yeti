@@ -10,7 +10,7 @@ class ScryfallRepository {
 
   final ApiClient _apiClient;
 
-  Future<Card> getCardFullText({required String cardName}) async {
+  Future<SearchCards> getCardFullText({required String cardName}) async {
     return _apiClient.getCardFullText(cardName);
   }
 

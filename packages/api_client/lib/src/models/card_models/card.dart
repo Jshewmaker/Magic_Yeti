@@ -9,13 +9,36 @@ part 'card.g.dart';
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class Card extends Equatable {
   const Card({
+    required this.colorIndicator,
+    required this.contentWarning,
+    required this.flavorName,
+    required this.flavorText,
+    required this.lifeModifier,
+    required this.loyalty,
+    required this.mtgoFoilId,
+    required this.power,
+    required this.producedMana,
+    required this.tcgplayerEtchedId,
+    required this.toughness,
+    required this.handModifier,
     required this.object,
     required this.id,
     required this.set,
     required this.oracleId,
     required this.multiverseIds,
+    required this.mtgoId,
+    required this.arenaId,
     required this.tcgplayerId,
     required this.cardmarketId,
+    required this.allParts,
+    required this.artist,
+    required this.artistIds,
+    required this.booster,
+    required this.borderColor,
+    required this.cardBackId,
+    required this.cardFaces,
+    required this.cmc,
+    required this.collectorNumber,
     required this.name,
     required this.lang,
     required this.releasedAt,
@@ -26,7 +49,6 @@ class Card extends Equatable {
     required this.imageStatus,
     required this.imageUris,
     required this.manaCost,
-    required this.cmc,
     required this.typeLine,
     required this.oracleText,
     required this.colors,
@@ -50,19 +72,13 @@ class Card extends Equatable {
     required this.scryfallSetUri,
     required this.rulingsUri,
     required this.printsSearchUri,
-    required this.collectorNumber,
     required this.digital,
     required this.rarity,
-    required this.cardBackId,
-    required this.artist,
-    required this.artistIds,
     required this.illustrationId,
-    required this.borderColor,
     required this.frame,
     required this.securityStamp,
     required this.fullArt,
     required this.textless,
-    required this.booster,
     required this.storySpotlight,
     required this.edhrecRank,
     required this.pennyRank,
@@ -78,9 +94,13 @@ class Card extends Equatable {
   final String object;
   final String id;
   final String? oracleId;
-  final List<int> multiverseIds;
-  final int tcgplayerId;
-  final int cardmarketId;
+  final int? mtgoId;
+  final int? arenaId;
+  final List<int>? multiverseIds;
+  final int? tcgplayerId;
+  final int? tcgplayerEtchedId;
+  final int? mtgoFoilId;
+  final int? cardmarketId;
   final String name;
   final String lang;
   final String releasedAt;
@@ -89,12 +109,20 @@ class Card extends Equatable {
   final String layout;
   final bool highresImage;
   final String imageStatus;
-  final ImageURIs imageUris;
-  final String manaCost;
+  final ImageURIs? imageUris;
+  final String? manaCost;
+  final List<RelatedCards>? allParts;
+  final List<CardFace>? cardFaces;
   final double cmc;
+  final String? lifeModifier;
+  final String? loyalty;
+  final String? power;
+  final List<String>? producedMana;
+  final String? toughness;
   final String typeLine;
-  final String oracleText;
-  final List<String> colors;
+  final String? oracleText;
+  final List<String>? colors;
+  final List<String>? colorIndicator;
   final List<String> colorIdentity;
   final List<String> keywords;
   final Legalities legalities;
@@ -120,18 +148,22 @@ class Card extends Equatable {
   final bool digital;
   final String rarity;
   final String cardBackId;
-  final String artist;
+  final String? artist;
+  final bool? contentWarning;
+  final String? flavorName;
+  final String? flavorText;
   final List<String> artistIds;
   final String illustrationId;
   final String borderColor;
   final String frame;
-  final String securityStamp;
+  final String? securityStamp;
   final bool fullArt;
   final bool textless;
   final bool booster;
   final bool storySpotlight;
-  final int edhrecRank;
+  final int? edhrecRank;
   final int? pennyRank;
+  final String? handModifier;
   final Prices prices;
   final RelatedURIs relatedUris;
   final PurchaseURIs purchaseUris;
@@ -142,6 +174,8 @@ class Card extends Equatable {
         id,
         oracleId,
         multiverseIds,
+        mtgoId,
+        arenaId,
         tcgplayerId,
         cardmarketId,
         name,

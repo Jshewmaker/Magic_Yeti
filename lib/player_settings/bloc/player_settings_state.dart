@@ -18,7 +18,7 @@ final class PlayerSettingsInitial extends PlayerSettingsState {}
 final class PlayerSettingsLoadSuccess extends PlayerSettingsState {
   const PlayerSettingsLoadSuccess(this.cardList);
 
-  final Card cardList;
+  final SearchCards cardList;
 }
 
 final class PlayerSettingsLoadFailure extends PlayerSettingsState {}

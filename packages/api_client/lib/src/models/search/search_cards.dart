@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'search_cards.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class SearchCards extends Equatable {
   const SearchCards({
     required this.object,
