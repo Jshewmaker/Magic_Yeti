@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -27,7 +29,6 @@ class RelatedCards extends Equatable {
   final String uri;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         id,
         object,

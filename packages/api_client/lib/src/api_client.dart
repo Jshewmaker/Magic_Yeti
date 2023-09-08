@@ -37,6 +37,10 @@ class ApiClient {
   final http.Client _httpClient;
   final Uri _baseUrl;
 
+  /// Returns a List object containing Cards found using a
+  /// fulltext search string.
+  ///
+  /// GET /cards/search
   Future<SearchCards> getCardFullText(String cardName) async {
     final queryParameters = {
       'unique': 'art',
