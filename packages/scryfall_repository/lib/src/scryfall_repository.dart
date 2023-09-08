@@ -13,4 +13,6 @@ class ScryfallRepository {
   Future<Card> getCardFullText({required String cardName}) async {
     return _apiClient.getCardFullText(cardName);
   }
+
+  // Future<AutoComplete>
 }

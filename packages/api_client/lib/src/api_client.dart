@@ -39,10 +39,11 @@ class ApiClient {
 
   Future<Card> getCardFullText(String cardName) async {
     final queryParameters = {
-      'fuzzy': 'craterhoof',
+      'order': 'name',
+      'q': cardName,
     };
     final request = _baseUrl.replace(
-      path: '/cards/named',
+      path: '/cards/search',
       queryParameters: queryParameters,
     );
 

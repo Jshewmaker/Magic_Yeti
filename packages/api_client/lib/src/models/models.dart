@@ -1,6 +1,2 @@
-export 'card.dart';
-export 'image_uris.dart';
-export 'legalities.dart';
-export 'prices.dart';
-export 'purchase_uris.dart';
-export 'related_uris.dart';
+export 'auto_complete/auto_complete.dart';
+export 'card_models/card_models.dart';
