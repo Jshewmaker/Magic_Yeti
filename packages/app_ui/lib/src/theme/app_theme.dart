@@ -15,7 +15,11 @@ class AppTheme {
       primaryColor: _primaryColor,
       canvasColor: _backgroundColor,
       textButtonTheme: _textButtonTheme,
-      textTheme: uiTextTheme,
+      textTheme: uiTextTheme.apply(
+        bodyColor: AppColors.black,
+        displayColor: AppColors.black,
+        decorationColor: AppColors.black,
+      ),
       tabBarTheme: _tabBarTheme,
       appBarTheme: _appBarTheme,
       inputDecorationTheme: _inputDecorationTheme,
@@ -28,9 +32,10 @@ class AppTheme {
   Color get _backgroundColor => AppColors.background;
 
   ColorScheme get _colorScheme {
-    return ColorScheme.light(
+    return ColorScheme.dark(
       background: _backgroundColor,
-      primary: _primaryColor,
+      primary: _backgroundColor,
+      onPrimary: _backgroundColor,
       secondary: AppColors.secondary,
       tertiary: AppColors.tertiary,
       surface: AppColors.surface,

@@ -6,42 +6,53 @@ class LifeCounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Row(
-        children: [
-          Flexible(
-            child: Column(
-              children: [
-                Flexible(
-                  child: LifeCounterWidget(
-                    color: Colors.blue,
+    return const SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Row(
+          children: [
+            Expanded(
+              flex: 10,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: LifeCounterWidget(
+                      color: Colors.blue,
+                    ),
                   ),
-                ),
-                Flexible(
-                  child: LifeCounterWidget(
-                    color: Colors.red,
+                  Expanded(
+                    child: LifeCounterWidget(
+                      color: Colors.red,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Flexible(
-            child: Column(
-              children: [
-                Flexible(
-                  child: LifeCounterWidget(
-                    color: Colors.green,
-                  ),
-                ),
-                Flexible(
-                  child: LifeCounterWidget(
-                    color: Colors.orange,
-                  ),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text('hello')],
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 10,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: LifeCounterWidget(
+                      color: Colors.green,
+                    ),
+                  ),
+                  Expanded(
+                    child: LifeCounterWidget(
+                      color: Colors.orange,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
