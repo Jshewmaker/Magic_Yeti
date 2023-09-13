@@ -62,9 +62,8 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
         if (state is PlayerSettingsLoadSuccess) {
           return Scaffold(
             body: SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 children: [
                   Row(
                     children: [
@@ -92,35 +91,35 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
                     ],
                   ),
                   ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.cardList.totalCards,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () => AppRouter.of(context).goRouter.pop(
-                                state.cardList.data[index].imageUris!.artCrop,
-                              ),
-                          child: Card(
-                            child: Row(
-                              children: [
-                                if (state.cardList.data[index].imageUris
-                                        ?.artCrop ==
-                                    null)
-                                  const Text('No Image')
-                                else
-                                  Image.network(
-                                    state.cardList.data[index].imageUris!
-                                        .artCrop,
-                                    scale: 4,
-                                  ),
-                                Text(
-                                  state.cardList.data[index].name,
-                                  style: TextStyle(fontSize: 36),
-                                ),
-                              ],
+                    shrinkWrap: true,
+                    itemCount: state.cardList.totalCards,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () => AppRouter.of(context).goRouter.pop(
+                              state.cardList.data[index].imageUris!.artCrop,
                             ),
+                        child: Card(
+                          child: Row(
+                            children: [
+                              if (state.cardList.data[index].imageUris
+                                      ?.artCrop ==
+                                  null)
+                                const Text('No Image')
+                              else
+                                Image.network(
+                                  state.cardList.data[index].imageUris!.artCrop,
+                                  scale: 4,
+                                ),
+                              Text(
+                                state.cardList.data[index].name,
+                                style: const TextStyle(fontSize: 36),
+                              ),
+                            ],
                           ),
-                        );
-                      })
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
