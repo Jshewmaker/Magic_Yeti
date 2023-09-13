@@ -14,7 +14,7 @@ class LifeCounterWidget extends StatefulWidget {
 
 class _LifeCounterWidgetState extends State<LifeCounterWidget> {
   final textController = TextEditingController(text: 'text');
-
+  String? imageUrl;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -23,6 +23,8 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
         builder: (context, state) {
           return Container(
             decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(imageUrl ?? ''), fit: BoxFit.fill),
               color: widget.color,
               borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
@@ -67,7 +69,9 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                           ),
                         ),
                       ),
-                      onPressed: _showDialog,
+                      onPressed: () async {
+                        imageUrl = await _showDialog();
+                      },
                       child: Text(textController.text),
                     ),
                   ],
@@ -80,7 +84,7 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
     );
   }
 
-  Future<void> _showDialog() {
+  Future<String?> _showDialog() {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => Dialog(
@@ -100,10 +104,16 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () => AppRouter.of(context)
-                            .push(const PlayerSettingsRoute()),
+                        onTap: () async {
+                          imageUrl = await AppRouter.of(context)
+                              .goRouter
+                              .push(const PlayerSettingsRoute().path);
+                        },
                         child: Container(
                           decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(imageUrl ?? '')),
                             color: widget.color,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(20),
@@ -123,7 +133,7 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          AppRouter.of(context).goRouter.pop(imageUrl);
                         },
                         child: const Text('Close'),
                       ),

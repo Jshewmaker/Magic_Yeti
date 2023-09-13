@@ -45,7 +45,7 @@ class AppRouter {
   /// Example routes:
   /// * [HomeRoute]
   /// * [LoginRoute]
-  void push(AppRoute appRoute) {
+  Future<String?>? push(AppRoute appRoute) {
     final path = appRoute.path;
     final data = appRoute.extra;
 
@@ -68,7 +68,7 @@ class AppRouter {
   }
 
   /// Pop the top page off the GoRouter's page stack.
-  void pop() => _goRouter.pop();
+  void pop(dynamic value) => _goRouter.pop(value);
 
   /// Expose the [GoRouter]
   GoRouter get goRouter => _goRouter;

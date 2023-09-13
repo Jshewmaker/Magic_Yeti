@@ -15,6 +15,8 @@ final class PlayerSettingsInitial extends PlayerSettingsState {}
 //   final String cardName;
 // }
 
+final class PlayerSettingsLoading extends PlayerSettingsState {}
+
 final class PlayerSettingsLoadSuccess extends PlayerSettingsState {
   const PlayerSettingsLoadSuccess(this.cardList);
 

@@ -147,13 +147,13 @@ class Card extends Equatable {
   final String collectorNumber;
   final bool digital;
   final String rarity;
-  final String cardBackId;
+  final String? cardBackId;
   final String? artist;
   final bool? contentWarning;
   final String? flavorName;
   final String? flavorText;
   final List<String> artistIds;
-  final String illustrationId;
+  final String? illustrationId;
   final String borderColor;
   final String frame;
   final String? securityStamp;
@@ -166,7 +166,7 @@ class Card extends Equatable {
   final String? handModifier;
   final Prices prices;
   final RelatedURIs relatedUris;
-  final PurchaseURIs purchaseUris;
+  final PurchaseURIs? purchaseUris;
 
   @override
   List<Object?> get props => [
