@@ -38,8 +38,8 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
           ?.map((e) => RelatedCards.fromJson(e as Map<String, dynamic>))
           .toList(),
       artist: json['artist'] as String?,
-      artistIds: (json['artist_ids'] as List<dynamic>)
-          .map((e) => e as String)
+      artistIds: (json['artist_ids'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
       booster: json['booster'] as bool,
       borderColor: json['border_color'] as String,

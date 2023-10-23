@@ -152,7 +152,7 @@ class Card extends Equatable {
   final bool? contentWarning;
   final String? flavorName;
   final String? flavorText;
-  final List<String> artistIds;
+  final List<String>? artistIds;
   final String? illustrationId;
   final String borderColor;
   final String frame;

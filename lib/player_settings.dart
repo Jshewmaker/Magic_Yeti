@@ -36,7 +36,7 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
           return Scaffold(
             body: Column(
               children: [
-                Row(
+                Column(
                   children: [
                     Expanded(
                       child: TextField(
