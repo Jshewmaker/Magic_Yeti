@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_yeti/life_counter/widgets/widgets.dart';
 
@@ -16,12 +17,18 @@ class LifeCounterPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
+                    flex: 10,
                     child: LifeCounterWidget(
+                      playerNumber: 3,
                       color: Colors.blue,
                     ),
                   ),
+                  SizedBox(height: AppSpacing.sm),
                   Expanded(
+                    flex: 10,
                     child: LifeCounterWidget(
+                      playerNumber: 2,
+
                       color: Colors.red,
                     ),
                   ),
@@ -30,8 +37,13 @@ class LifeCounterPage extends StatelessWidget {
             ),
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text('hello')],
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(
+                    Icons.refresh,
+                    size: 50,
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -39,12 +51,18 @@ class LifeCounterPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
+                    flex: 10,
                     child: LifeCounterWidget(
+                      playerNumber: 4,
                       color: Colors.green,
                     ),
                   ),
+                  SizedBox(height: AppSpacing.sm),
                   Expanded(
+                    flex: 10,
                     child: LifeCounterWidget(
+                      playerNumber: 1,
+
                       color: Colors.orange,
                     ),
                   ),

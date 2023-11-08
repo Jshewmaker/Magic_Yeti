@@ -12,7 +12,7 @@ FutureOr<String?> redirects({
   switch (status) {
     case AppStatus.authenticated:
       if (location == LoginRoute.route.path) {
-        return HomeRoute.route.path;
+        return LifeCounterRoute.route.path;
       }
     case AppStatus.unauthenticated:
       if (location != LoginRoute.route.path) {
