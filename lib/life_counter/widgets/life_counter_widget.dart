@@ -52,7 +52,8 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                           children: [
                             Expanded(
                               key: const ValueKey(
-                                  'life_counter_widget_decrement'),
+                                'life_counter_widget_decrement',
+                              ),
                               child: GestureDetector(
                                 onTap: () => context
                                     .read<LifeCounterBloc>()
@@ -61,7 +62,8 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                             ),
                             Expanded(
                               key: const ValueKey(
-                                  'life_counter_widget_increment'),
+                                'life_counter_widget_increment',
+                              ),
                               child: GestureDetector(
                                 onTap: () => context
                                     .read<LifeCounterBloc>()
