@@ -12,6 +12,7 @@ class LifeCounterWidget extends StatefulWidget {
     super.key,
   });
 
+
   final Color color;
   final int playerNumber;
 
@@ -82,6 +83,7 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                       ],
                     );
                   },
+
                 ),
               ),
             ),
@@ -206,6 +208,7 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
             image: DecorationImage(
               image: NetworkImage(imageUrl ?? ''),
               fit: BoxFit.fill,
+
             ),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
           );
@@ -234,6 +237,64 @@ class _PlayerNameWidget extends StatelessWidget {
           child: Text(name),
         ),
       ],
+    );
+  }
+
+  Future<void> _showDialog() {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                  ),
+                  width: MediaQuery.of(context).size.width - 50,
+                  height: MediaQuery.of(context).size.height - 50,
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => AppRouter.of(context)
+                            .push(const PlayerSettingsRoute()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: widget.color,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          height: 200,
+                          width: 300,
+                        ),
+                      ),
+                      TextField(
+                        controller: textController,
+                        onChanged: (text) {
+                          setState(() {
+                            textController.text = text;
+                          });
+                        },
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Close'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

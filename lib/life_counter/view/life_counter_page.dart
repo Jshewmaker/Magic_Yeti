@@ -28,6 +28,7 @@ class LifeCounterPage extends StatelessWidget {
                     flex: 10,
                     child: LifeCounterWidget(
                       playerNumber: 2,
+
                       color: Colors.red,
                     ),
                   ),
@@ -61,6 +62,7 @@ class LifeCounterPage extends StatelessWidget {
                     flex: 10,
                     child: LifeCounterWidget(
                       playerNumber: 1,
+
                       color: Colors.orange,
                     ),
                   ),

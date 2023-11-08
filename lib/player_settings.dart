@@ -28,6 +28,7 @@ class PlayerSettingsView extends StatefulWidget {
 class _PlayerSettingsViewState extends State<PlayerSettingsView> {
   final textController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerSettingsBloc, PlayerSettingsState>(
@@ -151,6 +152,7 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
             ),
           );
         }
+
       },
     );
   }
