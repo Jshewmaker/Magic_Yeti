@@ -18,18 +18,31 @@ class LifeCounterPage extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 10,
-                    child: LifeCounterWidget(
-                      playerNumber: 3,
-                      color: Colors.blue,
+                    child: Stack(
+                      children: [
+                        LifeCounterWidget(
+                          playerNumber: 3,
+                          color: Colors.blue,
+                        ),
+                        TrackerWidgets(
+                          rotate: false,
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: AppSpacing.sm),
                   Expanded(
                     flex: 10,
-                    child: LifeCounterWidget(
-                      playerNumber: 2,
-
-                      color: Colors.red,
+                    child: Stack(
+                      children: [
+                        LifeCounterWidget(
+                          playerNumber: 2,
+                          color: Colors.red,
+                        ),
+                        TrackerWidgets(
+                          rotate: true,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -52,18 +65,33 @@ class LifeCounterPage extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 10,
-                    child: LifeCounterWidget(
-                      playerNumber: 4,
-                      color: Colors.green,
+                    child: Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        LifeCounterWidget(
+                          playerNumber: 3,
+                          color: Colors.green,
+                        ),
+                        TrackerWidgets(
+                          rotate: false,
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: AppSpacing.sm),
                   Expanded(
                     flex: 10,
-                    child: LifeCounterWidget(
-                      playerNumber: 1,
-
-                      color: Colors.orange,
+                    child: Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        LifeCounterWidget(
+                          playerNumber: 1,
+                          color: Colors.orange,
+                        ),
+                        TrackerWidgets(
+                          rotate: true,
+                        ),
+                      ],
                     ),
                   ),
                 ],

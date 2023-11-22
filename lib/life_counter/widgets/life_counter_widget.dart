@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:magic_yeti/app_router/app_router.dart';
 import 'package:magic_yeti/life_counter/bloc/life_counter_bloc.dart';
-import 'package:magic_yeti/life_counter/widgets/widgets.dart';
 
 class LifeCounterWidget extends StatefulWidget {
   const LifeCounterWidget({
@@ -26,73 +25,58 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
   Widget build(BuildContext context) {
     return RotatedBox(
       quarterTurns: widget.playerNumber < 3 ? 0 : 2,
-      child: Row(
-        children: [
-          if ((widget.playerNumber == 2) || (widget.playerNumber == 4))
-            TrackerWidgets(
-              color: widget.color.withOpacity(.2),
-            ),
-          Expanded(
-            flex: 7,
-            child: Container(
-              decoration: _getDecoration(),
-              child: BlocProvider(
-                create: (context) => LifeCounterBloc(),
-                child: BlocBuilder<LifeCounterBloc, LifeCounterState>(
-                  builder: (context, state) {
-                    return Stack(
-                      children: [
-                        Center(
-                          child: Text(
-                            '${state.counter}',
-                            style: const TextStyle(fontSize: 48),
-                          ),
+      child: Container(
+        decoration: _getDecoration(),
+        child: BlocProvider(
+          create: (context) => LifeCounterBloc(),
+          child: BlocBuilder<LifeCounterBloc, LifeCounterState>(
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  Center(
+                    child: Text(
+                      '${state.counter}',
+                      style: const TextStyle(fontSize: 48),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        key: const ValueKey(
+                          'life_counter_widget_decrement',
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              key: const ValueKey(
-                                'life_counter_widget_decrement',
-                              ),
-                              child: GestureDetector(
-                                onTap: () => context
-                                    .read<LifeCounterBloc>()
-                                    .add(LifeCounterDecrementPressed()),
-                              ),
-                            ),
-                            Expanded(
-                              key: const ValueKey(
-                                'life_counter_widget_increment',
-                              ),
-                              child: GestureDetector(
-                                onTap: () => context
-                                    .read<LifeCounterBloc>()
-                                    .add(LifeCounterIncrementPressed()),
-                              ),
-                            ),
-                          ],
+                        child: GestureDetector(
+                          onTap: () => context
+                              .read<LifeCounterBloc>()
+                              .add(LifeCounterDecrementPressed()),
                         ),
-                        _PlayerNameWidget(
-                          name: textController.text,
-                          onPressed: () async {
-                            imageUrl = await _showDialog();
-                            setState(() {
-                              imageUrl = imageUrl;
-                            });
-                          },
+                      ),
+                      Expanded(
+                        key: const ValueKey(
+                          'life_counter_widget_increment',
                         ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ),
+                        child: GestureDetector(
+                          onTap: () => context
+                              .read<LifeCounterBloc>()
+                              .add(LifeCounterIncrementPressed()),
+                        ),
+                      ),
+                    ],
+                  ),
+                  _PlayerNameWidget(
+                    name: textController.text,
+                    onPressed: () async {
+                      imageUrl = await _showDialog();
+                      setState(() {
+                        imageUrl = imageUrl;
+                      });
+                    },
+                  ),
+                ],
+              );
+            },
           ),
-          if ((widget.playerNumber == 1) || (widget.playerNumber == 3))
-            TrackerWidgets(
-              color: widget.color.withOpacity(.2),
-            ),
-        ],
+        ),
       ),
     );
   }
