@@ -5,13 +5,14 @@ part 'life_counter_event.dart';
 part 'life_counter_state.dart';
 
 class LifeCounterBloc extends Bloc<LifeCounterEvent, LifeCounterState> {
-  LifeCounterBloc() : super(const LifeCounterState(counter: 0)) {
+  LifeCounterBloc({required this.startingLife})
+      : super(LifeCounterState(counter: startingLife)) {
     on<LifeCounterIncrementPressed>(
       _incrementCounter,
     );
     on<LifeCounterDecrementPressed>(_decrementCounter);
   }
-
+  final int startingLife;
   void _incrementCounter(
     LifeCounterIncrementPressed event,
     Emitter<LifeCounterState> emit,

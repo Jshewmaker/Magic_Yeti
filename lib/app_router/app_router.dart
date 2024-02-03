@@ -45,7 +45,7 @@ class AppRouter {
   /// Example routes:
   /// * [HomeRoute]
   /// * [LoginRoute]
-  Future<String?>? push(AppRoute appRoute) {
+  void push(AppRoute appRoute) {
     final path = appRoute.path;
     final data = appRoute.extra;
 

@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:magic_yeti/app_router/app_router.dart';
+import 'package:magic_yeti/player/player.dart';
 import 'package:magic_yeti/player_settings/bloc/player_settings_bloc.dart';
 import 'package:scryfall_repository/scryfall_repository.dart';
 
 class PlayerSettings extends StatelessWidget {
-  const PlayerSettings({super.key});
-
+  const PlayerSettings({required this.player, super.key});
+  final Player player;
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PlayerSettingsBloc>(
       create: (_) => PlayerSettingsBloc(
         scryfallRepository: context.read<ScryfallRepository>(),
       ),
-      child: const PlayerSettingsView(),
+      child: PlayerSettingsView(
+        player: player,
+      ),
     );
   }
 }
 
 class PlayerSettingsView extends StatefulWidget {
-  const PlayerSettingsView({super.key});
-
+  const PlayerSettingsView({required this.player, super.key});
+  final Player player;
   @override
   State<PlayerSettingsView> createState() => _PlayerSettingsViewState();
 }
@@ -28,66 +30,57 @@ class PlayerSettingsView extends StatefulWidget {
 class _PlayerSettingsViewState extends State<PlayerSettingsView> {
   final textController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerSettingsBloc, PlayerSettingsState>(
       builder: (context, state) {
         if (state is PlayerSettingsLoading) {
-          return Scaffold(
-            body: Column(
-              children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: textController,
-                      ),
+          return Column(
+            children: [
+              Column(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: textController,
                     ),
-                    Expanded(
-                      child: ElevatedButton(
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => context.read<PlayerSettingsBloc>().add(
+                            PlayerSettingsCardRequested(
+                              textController.text,
+                            ),
+                          ),
+                      child: const Text('Search'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        }
+        if (state is PlayerSettingsLoadSuccess) {
+          return Expanded(
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        child: TextField(
+                          controller: textController,
+                        ),
+                      ),
+                      ElevatedButton(
                         onPressed: () => context.read<PlayerSettingsBloc>().add(
                               PlayerSettingsCardRequested(
                                 textController.text,
                               ),
                             ),
                         child: const Text('Search'),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        }
-        if (state is PlayerSettingsLoadSuccess) {
-          return Scaffold(
-            body: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          textInputAction: TextInputAction.done,
-                          onSubmitted: (value) =>
-                              context.read<PlayerSettingsBloc>().add(
-                                    PlayerSettingsCardRequested(value),
-                                  ),
-                          controller: textController,
-                        ),
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () =>
-                              context.read<PlayerSettingsBloc>().add(
-                                    PlayerSettingsCardRequested(
-                                      textController.text,
-                                    ),
-                                  ),
-                          child: const Text('Search'),
-                        ),
                       ),
                     ],
                   ),
@@ -96,8 +89,12 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
                     itemCount: state.cardList.totalCards,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () => AppRouter.of(context).goRouter.pop(
-                              state.cardList.data[index].imageUris!.artCrop,
+                        onTap: () => context.read<PlayerBloc>().add(
+                              UpdateCommanderEvent(
+                                pictureUrl: state
+                                    .cardList.data[index].imageUris!.artCrop,
+                                playerNumber: widget.player.playerNumber,
+                              ),
                             ),
                         child: Card(
                           child: Row(
@@ -125,34 +122,26 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
               ),
             ),
           );
-        } else {
-          return Scaffold(
-            body: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: textController,
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => context.read<PlayerSettingsBloc>().add(
-                              PlayerSettingsCardRequested(
-                                textController.text,
-                              ),
-                            ),
-                        child: const Text('Search'),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
         }
-
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              width: 300,
+              child: TextField(
+                controller: textController,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => context.read<PlayerSettingsBloc>().add(
+                    PlayerSettingsCardRequested(
+                      textController.text,
+                    ),
+                  ),
+              child: const Text('Search'),
+            ),
+          ],
+        );
       },
     );
   }

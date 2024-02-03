@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:magic_yeti/app/bloc/app_bloc.dart';
 import 'package:magic_yeti/app_router/app_router.dart';
 import 'package:magic_yeti/l10n/l10n.dart';
+import 'package:magic_yeti/player/bloc/player_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:scryfall_repository/scryfall_repository.dart';
 import 'package:user_repository/user_repository.dart';
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
               user: _user,
             ),
           ),
+          BlocProvider(create: (_) => PlayerBloc())
         ],
         child: Provider<AppRouter>(
           create: (context) => AppRouter(

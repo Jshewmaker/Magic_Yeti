@@ -21,7 +21,7 @@ Legalities _$LegalitiesFromJson(Map<String, dynamic> json) => Legalities(
       commander: json['commander'] as String,
       oathbreaker: json['oathbreaker'] as String,
       brawl: json['brawl'] as String,
-      historicbrawl: json['historicbrawl'] as String,
+      historicbrawl: json['historicbrawl'] as String?,
       alchemy: json['alchemy'] as String,
       paupercommander: json['paupercommander'] as String,
       duel: json['duel'] as String,
