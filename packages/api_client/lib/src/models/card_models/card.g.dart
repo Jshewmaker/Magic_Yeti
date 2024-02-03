@@ -44,11 +44,10 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
       booster: json['booster'] as bool,
       borderColor: json['border_color'] as String,
       cardBackId: json['card_back_id'] as String?,
-
       cardFaces: (json['card_faces'] as List<dynamic>?)
           ?.map((e) => CardFace.fromJson(e as Map<String, dynamic>))
           .toList(),
-      cmc: (json['cmc'] as num).toDouble(),
+      cmc: (json['cmc'] as num?)?.toDouble(),
       collectorNumber: json['collector_number'] as String,
       name: json['name'] as String,
       lang: json['lang'] as String,
@@ -94,7 +93,6 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
       digital: json['digital'] as bool,
       rarity: json['rarity'] as String,
       illustrationId: json['illustration_id'] as String?,
-
       frame: json['frame'] as String,
       securityStamp: json['security_stamp'] as String?,
       fullArt: json['full_art'] as bool,
@@ -109,7 +107,6 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
           ? null
           : PurchaseURIs.fromJson(
               json['purchase_uris'] as Map<String, dynamic>),
-
     );
 
 Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
@@ -189,5 +186,4 @@ Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
       'prices': instance.prices.toJson(),
       'related_uris': instance.relatedUris.toJson(),
       'purchase_uris': instance.purchaseUris?.toJson(),
-
     };

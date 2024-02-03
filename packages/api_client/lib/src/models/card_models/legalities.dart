@@ -50,7 +50,7 @@ class Legalities extends Equatable {
   final String commander;
   final String oathbreaker;
   final String brawl;
-  final String historicbrawl;
+  final String? historicbrawl;
   final String alchemy;
   final String paupercommander;
   final String duel;

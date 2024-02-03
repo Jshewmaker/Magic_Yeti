@@ -11,7 +11,7 @@ void main() {
     testWidgets('increments on tap', (tester) async {
       await tester.pumpApp(
         LifeCounterWidget(
-          playerNumber: 1,
+          player: 1,
           color: Colors.blue,
         ),
       );
@@ -25,7 +25,7 @@ void main() {
     testWidgets('decrements on tap', (tester) async {
       await tester.pumpApp(
         LifeCounterWidget(
-          playerNumber: 1,
+          player: 1,
           color: Colors.blue,
         ),
       );

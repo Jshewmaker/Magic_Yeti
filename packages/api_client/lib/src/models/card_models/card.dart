@@ -113,7 +113,7 @@ class Card extends Equatable {
   final String? manaCost;
   final List<RelatedCards>? allParts;
   final List<CardFace>? cardFaces;
-  final double cmc;
+  final double? cmc;
   final String? lifeModifier;
   final String? loyalty;
   final String? power;

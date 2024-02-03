@@ -1,38 +1,54 @@
-import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:magic_yeti/app_router/app_router.dart';
 import 'package:magic_yeti/life_counter/bloc/life_counter_bloc.dart';
+import 'package:magic_yeti/player/player.dart';
 
-class LifeCounterWidget extends StatefulWidget {
-  const LifeCounterWidget({
-    required this.color,
-    required this.playerNumber,
+// class LifeCounterWidget extends StatefulWidget {
+//   const LifeCounterWidget({
+//     required this.player,
+//     super.key,
+//   });
+
+//   final Player player;
+
+//   @override
+//   State<LifeCounterWidget> createState() => _LifeCounterWidgetState();
+// }
+
+class LifeCounterWidget extends StatelessWidget {
+  LifeCounterWidget({
+    required this.player,
     super.key,
   });
-
-  final Color color;
-  final int playerNumber;
-
-  @override
-  State<LifeCounterWidget> createState() => _LifeCounterWidgetState();
-}
-
-class _LifeCounterWidgetState extends State<LifeCounterWidget> {
-  final textController = TextEditingController(text: 'player');
-  String? imageUrl;
+  final Player player;
+  final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    textController.text = player.name;
     return RotatedBox(
-      quarterTurns: widget.playerNumber < 3 ? 0 : 2,
+      quarterTurns: player.playerNumber < 2 ? 0 : 2,
       child: Container(
         decoration: _getDecoration(),
         child: BlocProvider(
-          create: (context) => LifeCounterBloc(),
+          create: (context) => LifeCounterBloc(startingLife: player.lifePoints),
           child: BlocBuilder<LifeCounterBloc, LifeCounterState>(
             builder: (context, state) {
               return Stack(
                 children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    child: Image.network(
+                      player.picture,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        decoration: BoxDecoration(
+                            color: player.color,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20))),
+                      ),
+                    ),
+                  ),
                   Center(
                     child: Text(
                       '${state.counter}',
@@ -65,11 +81,13 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
                   ),
                   _PlayerNameWidget(
                     name: textController.text,
-                    onPressed: () async {
-                      imageUrl = await _showDialog();
-                      setState(() {
-                        imageUrl = imageUrl;
-                      });
+                    onPressed: () {
+                      context.pushNamed(
+                        const CustomizePlayerRoute().name,
+                        pathParameters: {
+                          'player': player.playerNumber.toString()
+                        },
+                      );
                     },
                   ),
                 ],
@@ -81,116 +99,15 @@ class _LifeCounterWidgetState extends State<LifeCounterWidget> {
     );
   }
 
-  Future<String?> _showDialog() {
-    return showDialog<String>(
-      context: context,
-      builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return Dialog(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                        ),
-                        width: MediaQuery.of(context).size.width - 750,
-                        height: MediaQuery.of(context).size.height - 500,
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () async {
-                                String? returnedValue;
-                                returnedValue = await AppRouter.of(context)
-                                    .goRouter
-                                    .push(const PlayerSettingsRoute().path);
-                                imageUrl = returnedValue ?? imageUrl;
-                              },
-                              child: imageUrl == null
-                                  ? Container(
-                                      decoration: BoxDecoration(
-                                        color: widget.color,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(20),
-                                        ),
-                                      ),
-                                      height: 200,
-                                      width: 300,
-                                    )
-                                  : Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage(imageUrl ?? ''),
-                                        ),
-                                        color: widget.color,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(20),
-                                        ),
-                                      ),
-                                      height: 200,
-                                      width: 300,
-                                    ),
-                            ),
-                            const SizedBox(height: AppSpacing.md),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 200,
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    controller: textController,
-                                    onChanged: (text) {
-                                      setState(() {
-                                        textController.text = text;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(width: AppSpacing.sm),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    AppRouter.of(context)
-                                        .goRouter
-                                        .pop(imageUrl);
-                                  },
-                                  child: const Text('ok'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-
   BoxDecoration _getDecoration() {
-    return imageUrl == null
+    return player.picture.isEmpty
         ? BoxDecoration(
-            color: widget.color,
+            color: player.color,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
           )
         : BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(imageUrl ?? ''),
+              image: NetworkImage(player.picture),
               fit: BoxFit.fill,
             ),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
