@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:magic_yeti/app_router/app_router.dart';
-import 'package:magic_yeti/life_counter/bloc/life_counter_bloc.dart';
 import 'package:magic_yeti/player/player.dart';
 
 class LifeCounterWidget extends StatelessWidget {
@@ -18,71 +17,69 @@ class LifeCounterWidget extends StatelessWidget {
     textController.text = player.name;
     return RotatedBox(
       quarterTurns: player.playerNumber < 2 ? 0 : 2,
-      child: BlocProvider(
-        create: (context) => LifeCounterBloc(startingLife: player.lifePoints),
-        child: BlocBuilder<LifeCounterBloc, LifeCounterState>(
-          builder: (context, state) {
-            return Stack(
-              children: [
-                ClipRRect(
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            child: Image.network(
+              player.picture,
+              errorBuilder: (context, error, stackTrace) => Container(
+                decoration: BoxDecoration(
+                  color: player.color,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  child: Image.network(
-                    player.picture,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                      decoration: BoxDecoration(
-                        color: player.color,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                  ),
                 ),
-                Center(
-                  child: StrokeText(
-                    text: '${state.counter}',
-                    fontSize: 96,
-                    color: AppColors.white,
-                  ),
+              ),
+            ),
+          ),
+          Center(
+            child: StrokeText(
+              text: '${player.lifePoints}',
+              fontSize: 96,
+              color: AppColors.white,
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                key: const ValueKey(
+                  'life_counter_widget_decrement',
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      key: const ValueKey(
-                        'life_counter_widget_decrement',
+                child: GestureDetector(
+                  onTap: () => context.read<PlayerBloc>().add(
+                        UpdatePlayerLifeEvent(
+                          playerNumber: player.playerNumber,
+                          decrement: true,
+                        ),
                       ),
-                      child: GestureDetector(
-                        onTap: () => context
-                            .read<LifeCounterBloc>()
-                            .add(LifeCounterDecrementPressed()),
-                      ),
-                    ),
-                    Expanded(
-                      key: const ValueKey(
-                        'life_counter_widget_increment',
-                      ),
-                      child: GestureDetector(
-                        onTap: () => context
-                            .read<LifeCounterBloc>()
-                            .add(LifeCounterIncrementPressed()),
-                      ),
-                    ),
-                  ],
                 ),
-                _PlayerNameWidget(
-                  name: textController.text,
-                  onPressed: () {
-                    context.pushNamed(
-                      const CustomizePlayerRoute().name,
-                      pathParameters: {
-                        'player': player.playerNumber.toString(),
-                      },
-                    );
-                  },
+              ),
+              Expanded(
+                key: const ValueKey(
+                  'life_counter_widget_increment',
                 ),
-              ],
-            );
-          },
-        ),
+                child: GestureDetector(
+                  onTap: () => context.read<PlayerBloc>().add(
+                        UpdatePlayerLifeEvent(
+                          playerNumber: player.playerNumber,
+                          decrement: false,
+                        ),
+                      ),
+                ),
+              ),
+            ],
+          ),
+          _PlayerNameWidget(
+            name: textController.text,
+            onPressed: () {
+              context.pushNamed(
+                const CustomizePlayerRoute().name,
+                pathParameters: {
+                  'player': player.playerNumber.toString(),
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -12,7 +12,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerBloc() : super(const PlayerState()) {
     on<CreatePlayerEvent>(_onPlayerCreated);
     on<UpdateCommanderEvent>(_onCommanderUpdated);
-    on<UpdatePlayerName>(_updatePlayerName);
+    on<UpdatePlayerNameEvent>(_updatePlayerName);
+    on<UpdatePlayerLifeEvent>(_updatePlayerLifeTotal);
+    // on<PlayerDiesEvent>(_PlayerDiesEvent);
   }
   List<Player> playerList = [];
   Future<void> _onPlayerCreated(
@@ -64,7 +66,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   void _updatePlayerName(
-    UpdatePlayerName event,
+    UpdatePlayerNameEvent event,
     Emitter<PlayerState> emit,
   ) {
     emit(state.copyWith(status: PlayerStatus.updating));
@@ -88,4 +90,54 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       ),
     );
   }
+
+  void _updatePlayerLifeTotal(
+    UpdatePlayerLifeEvent event,
+    Emitter<PlayerState> emit,
+  ) {
+    emit(state.copyWith(status: PlayerStatus.updating));
+
+    final player = state.playerList
+        .firstWhere((element) => element.playerNumber == event.playerNumber);
+    state.playerList
+        .removeWhere((element) => element.playerNumber == event.playerNumber);
+
+    final update = event.decrement
+        ? player.copyWith(lifePoints: player.lifePoints - 1)
+        : player.copyWith(lifePoints: player.lifePoints + 1);
+    state.playerList.add(update);
+    state.playerList.sort((a, b) => a.playerNumber.compareTo(b.playerNumber));
+
+    emit(
+      state.copyWith(
+        status: PlayerStatus.idle,
+        playerList: state.playerList,
+      ),
+    );
+  }
+
+  // void _PlayerDiesEvent(
+  //   PlayerDiesEvent event,
+  //   Emitter<PlayerState> emit,
+  // ) {
+  //   emit(state.copyWith(status: PlayerStatus.updating));
+
+  //   final player = state.playerList
+  //       .firstWhere((element) => element.playerNumber == event.playerNumber);
+  //   state.playerList
+  //       .removeWhere((element) => element.playerNumber == event.playerNumber);
+
+  //   final update = event.decrement
+  //       ? player.copyWith(lifePoints: player.lifePoints - 1)
+  //       : player.copyWith(lifePoints: player.lifePoints + 1);
+  //   state.playerList.add(update);
+  //   state.playerList.sort((a, b) => a.playerNumber.compareTo(b.playerNumber));
+
+  //   emit(
+  //     state.copyWith(
+  //       status: PlayerStatus.idle,
+  //       playerList: state.playerList,
+  //     ),
+  //   );
+  // }
 }

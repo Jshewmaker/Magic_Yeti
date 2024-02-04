@@ -1,13 +1,13 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:magic_yeti/life_counter/widgets/widgets.dart';
 import 'package:magic_yeti/player/bloc/player_bloc.dart';
 import 'package:magic_yeti/tracker/tracker.dart';
 
 class LifeCounterPage extends StatelessWidget {
   const LifeCounterPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     final state = context.watch<PlayerBloc>().state;
@@ -53,6 +53,11 @@ class LifeCounterPage extends StatelessWidget {
               Icon(
                 Icons.refresh,
                 size: 50,
+              ),
+              TimerWidget(),
+              Icon(
+                FontAwesomeIcons.diceOne,
+                size: 30,
               ),
             ],
           ),
