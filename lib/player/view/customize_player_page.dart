@@ -6,7 +6,10 @@ import 'package:magic_yeti/player/player.dart';
 import 'package:magic_yeti/player_settings.dart';
 
 class CustomizePlayerPage extends StatelessWidget {
-  const CustomizePlayerPage({required this.playerNumber, super.key});
+  const CustomizePlayerPage({
+    required this.playerNumber,
+    super.key,
+  });
   final String playerNumber;
 
   @override
@@ -45,6 +48,12 @@ class CustomizePlayerPage extends StatelessWidget {
                   SizedBox(
                     width: width,
                     child: TextField(
+                      onEditingComplete: () => context.read<PlayerBloc>().add(
+                            UpdatePlayerName(
+                              playerNumber: player.playerNumber,
+                              name: textController.text,
+                            ),
+                          ),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -77,9 +86,9 @@ class CustomizePlayerPage extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  PlayerSettings(
+                  SelectCommanderWidget(
                     player: player,
-                  )
+                  ),
                 ],
               ),
             ),

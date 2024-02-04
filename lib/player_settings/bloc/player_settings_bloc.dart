@@ -18,6 +18,7 @@ class PlayerSettingsBloc
     PlayerSettingsCardRequested event,
     Emitter<PlayerSettingsState> emit,
   ) async {
+    emit(PlayerSettingsLoading());
     try {
       final cardList = await _scryfallRepository.getCardFullText(
         cardName: event.cardName,

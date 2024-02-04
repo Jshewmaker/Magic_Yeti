@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:magic_yeti/l10n/l10n.dart';
 import 'package:magic_yeti/player/player.dart';
 import 'package:magic_yeti/player_settings/bloc/player_settings_bloc.dart';
 import 'package:scryfall_repository/scryfall_repository.dart';
 
-class PlayerSettings extends StatelessWidget {
-  const PlayerSettings({required this.player, super.key});
+class SelectCommanderWidget extends StatelessWidget {
+  const SelectCommanderWidget({required this.player, super.key});
   final Player player;
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<PlayerSettingsBloc, PlayerSettingsState>(
       builder: (context, state) {
         if (state is PlayerSettingsLoading) {
@@ -51,9 +53,10 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
                               textController.text,
                             ),
                           ),
-                      child: const Text('Search'),
+                      child: Text(l10n.searchButtonText),
                     ),
                   ),
+                  const LinearProgressIndicator()
                 ],
               ),
             ],
@@ -99,15 +102,12 @@ class _PlayerSettingsViewState extends State<PlayerSettingsView> {
                         child: Card(
                           child: Row(
                             children: [
-                              if (state.cardList.data[index].imageUris
-                                      ?.artCrop ==
-                                  null)
-                                const Text('No Image')
-                              else
-                                Image.network(
-                                  state.cardList.data[index].imageUris!.artCrop,
-                                  scale: 4,
-                                ),
+                              Image.network(
+                                state.cardList.data[index].imageUris!.artCrop,
+                                scale: 4,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Container(),
+                              ),
                               Text(
                                 state.cardList.data[index].name,
                                 style: const TextStyle(fontSize: 36),

@@ -40,7 +40,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginWelcomeText": "Welcome to\nValkyrie",
+  "loginWelcomeText": "Welcome to Magic Yeti!",
   "@loginWelcomeText": {
     "description": "Greeting shown on the login page.",
     "type": "text",
@@ -103,6 +103,12 @@
   "submitButtonText": "Submit",
   "@submitButtonText": {
     "description": "Submit button title shown on Reset Password page",
+    "type": "text",
+    "placeholders": {}
+  },
+   "searchButtonText": "Search",
+  "@searchButtonText": {
+    "description": "Search button label",
     "type": "text",
     "placeholders": {}
   },
