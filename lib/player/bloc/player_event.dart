@@ -23,8 +23,23 @@ class UpdateCommanderEvent extends PlayerEvent {
   final int playerNumber;
 }
 
-class UpdatePlayerName extends PlayerEvent {
-  const UpdatePlayerName({required this.playerNumber, required this.name});
+class UpdatePlayerNameEvent extends PlayerEvent {
+  const UpdatePlayerNameEvent({required this.playerNumber, required this.name});
   final int playerNumber;
   final String name;
+}
+
+class UpdatePlayerLifeEvent extends PlayerEvent {
+  const UpdatePlayerLifeEvent({
+    required this.playerNumber,
+    required this.decrement,
+  });
+  final int playerNumber;
+  final bool decrement;
+}
+
+class PlayerDiesEvent extends PlayerEvent {
+  const PlayerDiesEvent({required this.playerNumber});
+
+  final int playerNumber;
 }

@@ -55,7 +55,7 @@ class CustomizePlayerPage extends StatelessWidget {
                     width: width,
                     child: TextField(
                       onEditingComplete: () => context.read<PlayerBloc>().add(
-                            UpdatePlayerName(
+                            UpdatePlayerNameEvent(
                               playerNumber: player.playerNumber,
                               name: textController.text,
                             ),
@@ -74,7 +74,7 @@ class CustomizePlayerPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         context.read<PlayerBloc>().add(
-                              UpdatePlayerName(
+                              UpdatePlayerNameEvent(
                                 name: textController.text,
                                 playerNumber: player.playerNumber,
                               ),
