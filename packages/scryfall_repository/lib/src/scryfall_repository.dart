@@ -11,8 +11,12 @@ class ScryfallRepository {
   final ApiClient _apiClient;
 
   Future<SearchCards> getCardFullText({required String cardName}) async {
-    return _apiClient.getCardFullText(cardName);
-  }
+    final cards = await _apiClient.getCardFullText(cardName);
+    cards.data.removeWhere(
+      (element) =>
+          element.imageStatus == 'missing' || element.imageUris == null,
+    );
 
-  // Future<AutoComplete>
+    return cards;
+  }
 }

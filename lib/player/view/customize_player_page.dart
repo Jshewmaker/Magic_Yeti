@@ -6,7 +6,10 @@ import 'package:magic_yeti/player/player.dart';
 import 'package:magic_yeti/player_settings.dart';
 
 class CustomizePlayerPage extends StatelessWidget {
-  const CustomizePlayerPage({required this.playerNumber, super.key});
+  const CustomizePlayerPage({
+    required this.playerNumber,
+    super.key,
+  });
   final String playerNumber;
 
   @override
@@ -14,13 +17,14 @@ class CustomizePlayerPage extends StatelessWidget {
     final player =
         context.watch<PlayerBloc>().state.playerList[int.parse(playerNumber)];
     final textController = TextEditingController(text: player.name);
-    const width = 300.0;
-
+    const width = 400.0;
+    const height = 300.0;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
               child: Column(
@@ -31,13 +35,18 @@ class CustomizePlayerPage extends StatelessWidget {
                         Radius.circular(20),
                       ),
                     ),
-                    height: 200,
+                    height: height,
                     width: width,
                     child: Image.network(
                       player.picture,
                       fit: BoxFit.fill,
                       errorBuilder: (context, error, stackTrace) => Container(
-                        color: player.color,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          color: player.color,
+                        ),
                       ),
                     ),
                   ),
@@ -45,6 +54,12 @@ class CustomizePlayerPage extends StatelessWidget {
                   SizedBox(
                     width: width,
                     child: TextField(
+                      onEditingComplete: () => context.read<PlayerBloc>().add(
+                            UpdatePlayerName(
+                              playerNumber: player.playerNumber,
+                              name: textController.text,
+                            ),
+                          ),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -53,23 +68,21 @@ class CustomizePlayerPage extends StatelessWidget {
                       controller: textController,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(width: AppSpacing.sm),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.read<PlayerBloc>().add(
-                                UpdatePlayerName(
-                                  name: textController.text,
-                                  playerNumber: player.playerNumber,
-                                ),
-                              );
-                          AppRouter.of(context).goRouter.pop();
-                        },
-                        child: const Text('ok'),
-                      ),
-                    ],
+                  const SizedBox(width: AppSpacing.md),
+                  SizedBox(
+                    width: width / 2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<PlayerBloc>().add(
+                              UpdatePlayerName(
+                                name: textController.text,
+                                playerNumber: player.playerNumber,
+                              ),
+                            );
+                        AppRouter.of(context).goRouter.pop();
+                      },
+                      child: const Text('Save'),
+                    ),
                   ),
                 ],
               ),
@@ -77,9 +90,9 @@ class CustomizePlayerPage extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  PlayerSettings(
+                  SelectCommanderWidget(
                     player: player,
-                  )
+                  ),
                 ],
               ),
             ),

@@ -67,9 +67,25 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     UpdatePlayerName event,
     Emitter<PlayerState> emit,
   ) {
+    emit(state.copyWith(status: PlayerStatus.updating));
     playerList[event.playerNumber].copyWith(
       name: event.name,
     );
-    emit(state.copyWith(status: PlayerStatus.idle));
+
+    final player = state.playerList
+        .firstWhere((element) => element.playerNumber == event.playerNumber);
+    state.playerList
+        .removeWhere((element) => element.playerNumber == event.playerNumber);
+
+    final update = player.copyWith(name: event.name);
+    state.playerList.add(update);
+    state.playerList.sort((a, b) => a.playerNumber.compareTo(b.playerNumber));
+
+    emit(
+      state.copyWith(
+        status: PlayerStatus.idle,
+        playerList: state.playerList,
+      ),
+    );
   }
 }

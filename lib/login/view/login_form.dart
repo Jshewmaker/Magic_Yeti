@@ -51,9 +51,11 @@ class _LoginContent extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('VERY GOOD VENTURES', style: theme.textTheme.titleLarge),
+        Text('Magic Yeti', style: theme.textTheme.titleLarge),
         const SizedBox(height: AppSpacing.xlg),
-        Text(l10n.loginWelcomeText, style: theme.textTheme.displayLarge),
+        Text(l10n.loginWelcomeText,
+            style: theme.textTheme.displayLarge!
+                .copyWith(color: AppColors.neutral60)),
         const SizedBox(height: AppSpacing.xxlg),
         _EmailInput(),
         const SizedBox(height: AppSpacing.xs),

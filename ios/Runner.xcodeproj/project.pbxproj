@@ -82,7 +82,6 @@
 				1C18DDA0B9B91ED119C10C85 /* Pods-Runner.profile-development.xcconfig */,
 				D5B3B40DCB22F095523431A0 /* Pods-Runner.profile-staging.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -156,6 +155,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				F9E00A707B0EEE2E577E81A0 /* [CP] Embed Pods Frameworks */,
 				9DE12BA2183CEA630A0C913D /* [firebase_crashlytics] Crashlytics Upload Symbols */,
+				D5F54B30D4CBD422FA89705B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -288,6 +288,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/firebase_app_id_file.json\" ";
 		};
+		D5F54B30D4CBD422FA89705B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F9E00A707B0EEE2E577E81A0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,6 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -528,6 +546,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -551,6 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -629,6 +649,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -705,6 +726,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -778,6 +800,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -856,6 +879,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -932,6 +956,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1005,6 +1030,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = 8TSX7R4FQJ;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Magic Yeti";
 				INFOPLIST_FILE = Runner/Info.plist;
